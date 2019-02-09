@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549750640754.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3121319628",
+    "id" : "494C2C39",
+    "lastKnownWriteTime" : 1549750691,
+    "last_content_update" : 1549750691070,
+    "path" : "~/GitHub/truncdist/R/qqtrunc.R",
+    "project_path" : "R/qqtrunc.R",
+    "properties" : {
+        "cursorPosition" : "21,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

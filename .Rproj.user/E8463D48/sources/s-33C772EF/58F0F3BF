@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549750739362.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1134086731",
+    "id" : "58F0F3BF",
+    "lastKnownWriteTime" : 1549750761,
+    "last_content_update" : 1549750761419,
+    "path" : "~/GitHub/truncdist/R/vartrunc.R",
+    "project_path" : "R/vartrunc.R",
+    "properties" : {
+        "cursorPosition" : "12,15",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
