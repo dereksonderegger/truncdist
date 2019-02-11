@@ -55,7 +55,6 @@ dtrunc <- function( x, spec, a = -Inf, b= Inf, params=NULL, ... ){
       stop( "argument a is greater than or equal to b" )
   if(is.null(params))
     params <- list(...)
-  tt <- rep( 0, length( x ) )
   g <- get( paste( "d", spec, sep="" ), mode="function" )
   G <- get( paste( "p", spec, sep="" ), mode="function" )
   G.a <- do.call(G, append(list(a), params))
@@ -63,7 +62,7 @@ dtrunc <- function( x, spec, a = -Inf, b= Inf, params=NULL, ... ){
   if ( any(G.a == G.b) ) {
     stop( "Trunction interval is not inside the domain of the density function" )
   }
-  tt[x >= a & x <= b] <-
-    do.call( g, append(list(x[x >= a & x <= b]), params)) / ( G.b - G.a )
-  return( tt )
+  out <- data.frame(x=x, a=a, b=b, density=do.call( g, append(list(x), params)) / ( G.b - G.a ))
+  out$density = ifelse( out$x <= out$a | out$b <= out$x, 0, out$density )
+  return( out$density )
 }

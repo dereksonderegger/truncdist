@@ -24,11 +24,18 @@ test_that('Restricted Poisson Correct Values',{
   expect_equal(dpois(5, lambda=5)/(1-ppois(4,lambda=5)),  dtrunc(5, 'pois', a=4, lambda=5))
 })
 
-# Do we get the correct probabilities in the Normal case?
+# Do we get the correct probabilities in the Restricted Normal case?
 test_that('Restricted Normal Case', {
-  expect_equal( 2*dnorm(0),  dtrunc(0, 'norm', a=0) )
-  expect_equal( 2*dnorm(0),  dtrunc(0, 'norm', a=0, mean=0, sd=1) )
-  expect_equal( 2*dnorm(0),  dtrunc(0, 'norm', a=0, params=list(mean=0, sd=1)) )
+  expect_equal( 2*dnorm(1),  dtrunc(1, 'norm', a=0) )
+  expect_equal( 2*dnorm(1),  dtrunc(1, 'norm', a=0, mean=0, sd=1) )
+  expect_equal( 2*dnorm(1),  dtrunc(1, 'norm', a=0, params=list(mean=0, sd=1)) )
+
+  expect_equal( 2*dnorm(-1),  dtrunc(-1, 'norm', b=0) )
+  expect_equal( 2*dnorm(-1),  dtrunc(-1, 'norm', b=0, mean=0, sd=1) )
+  expect_equal( 2*dnorm(-1),  dtrunc(-1, 'norm', b=0, params=list(mean=0, sd=1)) )
+
+  expect_equal( 0,  dtrunc(0, 'norm', a=0) )
+  expect_equal( 0,  dtrunc(0, 'norm', b=0) )
 })
 
 
@@ -81,6 +88,14 @@ test_that( 'Testing random number generation - right distribution:', {
 test_that( 'Testing sending vectors of parameters', {
   expect_equal(dnorm(c(-1,0,1), mean=c(-.5, 0, .5), sd=c(4,2,1) ), dtrunc(x=c(-1,0,1), spec='norm', mean=c(-.5, 0, .5), sd=c(4,2,1)))
   expect_equal(dnorm(c(-1,0,1), mean=c(-.5, 0, .5), sd=1), dtrunc(c(-1,0,1), 'norm', params=list(mean=c(-.5,0,.5), sd=1)))
+  expect_equal(pnorm(c(-1,0,1), mean=c(-.5, 0, .5), sd=c(4,2,1) ), ptrunc(c(-1,0,1), 'norm', mean=c(-.5, 0, .5), sd=c(4,2,1)))
+  expect_equal(pnorm(c(-1,0,1), mean=c(-.5, 0, .5), sd=1), ptrunc(c(-1,0,1), 'norm', params=list(mean=c(-.5,0,.5), sd=1)))
+  expect_equal(qnorm(c(.1, .5, .8), mean=c(-.5, 0, .5), sd=c(4,2,1) ), qtrunc(c(.1, .5, .8), 'norm', mean=c(-.5, 0, .5), sd=c(4,2,1)))
+  expect_equal(qnorm(c(.1, .5, .8), mean=c(-.5, 0, .5), sd=1), qtrunc(c(.1, .5, .8), 'norm', params=list(mean=c(-.5,0,.5), sd=1)))
   expect_equal(rtrunc(5, 'norm', params=list(mean=1:5, sd=0)), 1:5)
   expect_equal(rtrunc(3, 'hyper', params=list(m=c(2,2,2), n=c(0,0,0), k=2)), c(2,2,2) )
+
+  expect_equal(dnorm( 3, mean=-1:1), dtrunc(3, 'norm', params=list(mean=-1:1)))
+  expect_equal(pnorm( 3, mean=-1:1), ptrunc(3, 'norm', params=list(mean=-1:1)))
+  expect_equal(qnorm( .2, mean=-1:1), qtrunc(.2, 'norm', params=list(mean=-1:1)))
 })
