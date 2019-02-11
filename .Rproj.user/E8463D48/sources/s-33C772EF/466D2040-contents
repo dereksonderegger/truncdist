@@ -1,4 +1,0 @@
-library(testthat)
-library(truncdist2)
-
-test_check("truncdist2")

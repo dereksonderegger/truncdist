@@ -60,7 +60,7 @@ dtrunc <- function( x, spec, a = -Inf, b= Inf, params=NULL, ... ){
   G <- get( paste( "p", spec, sep="" ), mode="function" )
   G.a <- do.call(G, append(list(a), params))
   G.b <- do.call(G, append(list(b), params))
-  if ( G.a == G.b ) {
+  if ( any(G.a == G.b) ) {
     stop( "Trunction interval is not inside the domain of the density function" )
   }
   tt[x >= a & x <= b] <-

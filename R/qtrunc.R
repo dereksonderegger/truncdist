@@ -11,7 +11,7 @@ qtrunc <- function( p, spec, a = -Inf, b = Inf, params=NULL, ... ){
   Gin <- get( paste( "q", spec, sep="" ), mode = "function" )
   G.a <- do.call(G, append(list(a), params))
   G.b <- do.call(G, append(list(b), params))
-  if ( G.a == G.b ) {
+  if ( any(G.a == G.b) ) {
     stop( "Trunction interval is not inside the domain of the quantile function" )
   }
   temp <- do.call(G, append(list(a), params) )  +

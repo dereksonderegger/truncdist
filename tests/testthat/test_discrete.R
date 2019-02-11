@@ -76,3 +76,11 @@ test_that( 'Testing random number generation - right distribution:', {
   expect_lt( sum( abs( quantile(rtrunc(100000, 'hyper', params=list(m=5,n=10,k=4)), p) - qtrunc(p, 'hyper', params=list(m=5,n=10,k=4))) )/4,  0.1)
 })
 
+
+# Testing can we send in vectors of parameters
+test_that( 'Testing sending vectors of parameters', {
+  expect_equal(dnorm(c(-1,0,1), mean=c(-.5, 0, .5), sd=c(4,2,1) ), dtrunc(x=c(-1,0,1), spec='norm', mean=c(-.5, 0, .5), sd=c(4,2,1)))
+  expect_equal(dnorm(c(-1,0,1), mean=c(-.5, 0, .5), sd=1), dtrunc(c(-1,0,1), 'norm', params=list(mean=c(-.5,0,.5), sd=1)))
+  expect_equal(rtrunc(5, 'norm', params=list(mean=1:5, sd=0)), 1:5)
+  expect_equal(rtrunc(3, 'hyper', params=list(m=c(2,2,2), n=c(0,0,0), k=2)), c(2,2,2) )
+})
