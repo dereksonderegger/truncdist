@@ -99,3 +99,10 @@ test_that( 'Testing sending vectors of parameters', {
   expect_equal(pnorm( 3, mean=-1:1), ptrunc(3, 'norm', params=list(mean=-1:1)))
   expect_equal(qnorm( .2, mean=-1:1), qtrunc(.2, 'norm', params=list(mean=-1:1)))
 })
+
+
+# Testing the Expectation and Variance functions
+test_that('Testing expectation and variance', {
+  extrunc(spec='pois', a=0, params=c(lambda=2))
+
+})
